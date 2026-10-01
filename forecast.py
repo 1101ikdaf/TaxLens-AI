@@ -333,9 +333,11 @@ else:
                 f"The federal model suggests reserving approximately **{impact['reserve_rate']:.0%}** of it."
             )
         if indiana_result is not None:
+            state_amount = money(state_tax).replace("$", r"\$")
+            county_amount = money(county_tax).replace("$", r"\$")
             st.write(
-                f"The location estimate includes **{money(state_tax)} for Indiana** and "
-                f"**{money(county_tax)} for {st.session_state.county} County**."
+                f"The location estimate includes **{state_amount} for Indiana** and "
+                f"**{county_amount} for {st.session_state.county} County**."
             )
         links = st.columns(2)
         if links[0].button("Test a scenario", type="primary", width="stretch"):
