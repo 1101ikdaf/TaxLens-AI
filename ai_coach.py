@@ -73,17 +73,15 @@ def generate_ai_explanation(inputs: dict, result: dict, side_gig: dict) -> str:
         response = client.responses.create(
             model=model,
             instructions=(
-                "You are the educational coach inside TaxLens AI. Explain only the "
-                "provided Python calculations and never recalculate or invent values. "
-                "The field refund_or_amount_owed has an important meaning: a positive "
-                "value means a projected refund, while a negative value means the user "
-                "is projected to owe money. The same sign rule applies to the Indiana "
-                "state, county, and combined refund_or_amount_owed fields. Never describe "
-                "a negative value as a refund. "
+                "You are the friendly educational coach inside TaxLens AI. Explain the "
+                "provided forecast and never recalculate or invent values. Positive balance "
+                "values represent projected refunds and negative balance values represent "
+                "projected amounts owed. Never show internal field names, variable names, "
+                "JSON, Python, or implementation details. "
                 "Use plain language for a student or recent graduate. Write four short "
                 "sections: Outlook, Why, Next steps, and Limitations. Keep the entire "
-                "response under 250 words. Do not use LaTeX or dollar signs because they "
-                "cause formatting problems. Write amounts like 'USD 416.91' instead. "
+                "response under 200 words. Do not use LaTeX. Format money normally, such "
+                "as '$417', and round to whole dollars when appropriate. "
                 "Mention that this is an educational estimate and not tax advice."
             ),
             input=json.dumps(payload, indent=2),
@@ -129,23 +127,27 @@ def generate_chat_response(
         response = client.responses.create(
             model=model,
             instructions=(
-                "You are the conversational tax coach inside TaxLens AI, an educational "
-                "finance-class project for students and early-career workers. Use the "
-                "current Python-calculated projection supplied in the first message. "
-                "Do not alter, recalculate, or invent its numbers. A positive field ending "
-                "in refund_or_amount_owed means a projected refund; a negative value means "
-                "a projected amount owed. Answer the user's specific question directly in "
-                "plain language, usually in 2 to 5 short paragraphs or bullets. You may "
-                "explain tax concepts generally, but clearly say when something is outside "
-                "the calculator's inputs. Never claim to file a return or give definitive "
-                "personal tax advice. Do not use LaTeX or dollar signs; format money as "
-                "'USD 416.91'."
+                "You are the friendly tax coach inside TaxLens AI for students and "
+                "early-career workers. Use the current TaxLens forecast supplied in the "
+                "first message, but do not alter, recalculate, or invent its numbers. "
+                "A positive refund_or_amount_owed value means a projected refund and a "
+                "negative value means a projected amount owed. This rule is for your "
+                "interpretation only. Never show or mention internal field names, JSON, "
+                "variable names, raw decimal values, Python, an engine, a prompt, or other "
+                "implementation details. Speak naturally to the customer. Start with a "
+                "direct one-sentence answer, then use no more than three short bullets if "
+                "helpful. Keep the full answer under 140 words. Round dollar amounts to the "
+                "nearest whole dollar unless cents matter. Format money normally, such as "
+                "'$417'. Explain options without promising a refund or presenting one choice "
+                "as required. If a topic is outside the forecast, say so simply. End with a "
+                "brief reminder that the forecast is educational only when relevant."
             ),
             input=[
                 {
                     "role": "user",
                     "content": (
-                        "Here is the current calculator context. Treat it as authoritative:\n"
+                        "Here is the current TaxLens forecast. Treat these values as authoritative, "
+                        "but never expose their internal labels to the customer:\n"
                         + json.dumps(context, indent=2)
                     ),
                 },

@@ -1,11 +1,12 @@
 # TaxLens AI
 
-**A 2026 federal tax surprise predictor for students, recent graduates, and side-gig workers.**
+**A 2026 year-end tax forecast for students, recent graduates, and side-gig workers.**
 
 TaxLens projects year-end wages and withholding from paycheck information, estimates
 federal income and self-employment taxes, and warns when the entered facts could lead
-to a balance due. It also measures the incremental federal tax effect of side-gig
-profit and explains the results in plain language.
+to a balance due. For Indiana users, it also adds a simplified state and resident-county
+estimate. Scenario Lab supports what-if comparisons, and AI Coach explains the completed
+forecast in plain language and answers follow-up questions.
 
 ## Why it is different from tax-preparation software
 
@@ -23,9 +24,13 @@ making a traditional 401(k) contribution.
 - Projected refund or balance due
 - Shortfall per remaining paycheck
 - Side-gig incremental tax and after-tax profit comparison
-- AI-generated explanation when an OpenAI API key is configured
+- Simplified Indiana state and resident-county estimate
+- Guided three-step forecast and visual Tax Weather result
+- Scenario Lab with save-to-forecast behavior
+- Conversational AI Coach when an OpenAI API key is configured
+- Downloadable one-page PDF forecast
 - Built-in explanation when an API connection is unavailable
-- Classroom example button for a reliable demonstration
+- Classroom example button on each working page for a reliable demonstration
 
 ## Run the app
 
@@ -72,12 +77,14 @@ python -m unittest -v test_tax_engine.py
 
 1. Explain the problem: early-career workers may not know whether withholding and
    side-gig tax payments are keeping pace with their projected tax.
-2. Click **Load classroom example**.
-3. Show the projected balance and the amount per remaining paycheck.
-4. Change side-gig revenue from $8,000 to $0 and compare the result.
-5. Add the side-gig income back and show its incremental tax and after-tax profit.
-6. Click **Explain my projection** to demonstrate the AI component.
-7. Briefly show `tax_engine.py` and `ai_coach.py` to explain that Python calculates
+2. Open **My Forecast**, click **Load classroom example**, and walk through all three steps.
+3. Reveal the Tax Weather result and show the combined balance, tax mix, and amount per
+   remaining paycheck.
+4. Open **Scenario Lab**, change withholding or side-gig income, and compare the new result.
+5. Save the scenario and show that it becomes the active forecast.
+6. Return to **My Forecast** and show the one-page PDF download.
+7. Open **AI Coach** and ask why side income changed the forecast.
+8. Briefly show `tax_engine.py` and `ai_coach.py` to explain that Python calculates
    the numbers while AI explains those calculations.
 8. Close with limitations and possible future improvements.
 
@@ -86,10 +93,11 @@ python -m unittest -v test_tax_engine.py
 This is an educational estimate, not tax advice and not tax-return preparation.
 It uses the 2026 federal standard deduction and ordinary-income brackets. It includes
 a simplified student-loan interest phaseout and common self-employment tax mechanics.
-It does not calculate state or local taxes, tax credits, itemized deductions, QBI,
-capital gains, dependents, underpayment penalties, premium tax credits, or every
-adjustment and special rule. Traditional 401(k) contributions are treated as reducing
-federal taxable wages for this classroom projection.
+It includes a simplified 2026 Indiana state and resident-county estimate, but it does
+not calculate other states. It does not include every tax credit, itemized deduction,
+QBI calculation, capital gain, underpayment penalty, premium tax credit, or special rule.
+Traditional 401(k) contributions are treated as reducing federal taxable wages for this
+classroom projection.
 
 ## Primary sources
 
@@ -101,6 +109,7 @@ federal taxable wages for this classroom projection.
   https://www.irs.gov/taxtopics/tc554
 - IRS Topic 751, 2026 Social Security wage base:
   https://www.irs.gov/taxtopics/tc751
+- Indiana DOR rates, fees, and penalties:
+  https://www.in.gov/dor/resources/tax-rates-and-reports/rates-fees-and-penalties/
 - OpenAI developer quickstart:
   https://developers.openai.com/api/docs/quickstart
-
