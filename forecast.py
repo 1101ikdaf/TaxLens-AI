@@ -332,13 +332,13 @@ else:
                 f"Your side gig produces about **{money(result.side_gig_net_profit)} of net profit**. "
                 f"The federal model suggests reserving approximately **{impact['reserve_rate']:.0%}** of it."
             )
-        if indiana_result is not None:
-            st.markdown(
-                f"<p>The location estimate includes "
-                f"<strong>{money(state_tax)} for Indiana</strong> and "
-                f"<strong>{money(county_tax)} for {st.session_state.county} County</strong>.</p>",
-                unsafe_allow_html=True,
-            )
+       if indiana_result is not None:
+    st.markdown(
+        f"<p>The location estimate includes "
+        f"<strong>{money(state_tax)} for Indiana</strong> and "
+        f"<strong>{money(county_tax)} for {st.session_state.county} County</strong>.</p>",
+        unsafe_allow_html=True,
+    )
         links = st.columns(2)
         if links[0].button("Test a scenario", type="primary", width="stretch"):
             st.switch_page("views/scenario_lab.py")
