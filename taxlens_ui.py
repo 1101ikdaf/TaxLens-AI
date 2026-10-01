@@ -267,9 +267,18 @@ def apply_theme() -> None:
         .weather-cloudy{background:#FFF4D8;border-left:6px solid #D2A33A;}
         .weather-storm{background:#FCE4E1;border-left:6px solid var(--coral);}
         .weather-clear,.weather-cloudy,.weather-storm{padding:1rem 1.2rem;border-radius:14px;margin:.6rem 0 1rem;}
-        .stButton>button,[data-testid="stFormSubmitButton"]>button{border-radius:12px;}
-        .stButton>button[kind="primary"],[data-testid="stFormSubmitButton"]>button{
-        background:var(--coral)!important;border-color:var(--coral)!important;color:#FFF!important;}
+        .stButton>button,.stDownloadButton>button,[data-testid="stFormSubmitButton"]>button{
+        border-radius:12px!important;background:#FFF!important;border:1px solid #B8C7D9!important;
+        color:var(--navy)!important;-webkit-text-fill-color:var(--navy)!important;}
+        .stButton>button *, .stDownloadButton>button *,
+        [data-testid="stFormSubmitButton"]>button *{color:inherit!important;-webkit-text-fill-color:inherit!important;}
+        .stButton>button[kind="primary"],button[data-testid="stBaseButton-primary"],
+        .stDownloadButton>button[kind="primary"],[data-testid="stFormSubmitButton"]>button[kind="primary"],
+        [data-testid="stFormSubmitButton"] button[data-testid="stBaseButton-primary"]{
+        background:var(--coral)!important;border-color:var(--coral)!important;
+        color:#FFF!important;-webkit-text-fill-color:#FFF!important;}
+        .stButton>button:hover,.stDownloadButton>button:hover,
+        [data-testid="stFormSubmitButton"]>button:hover{border-color:var(--coral)!important;}
         [data-testid="stSidebarCollapsedControl"] button,[data-testid="stSidebarCollapseButton"] button{
         background:var(--navy)!important;color:#FFF!important;border:2px solid #FFF!important;border-radius:999px!important;}
         [data-testid="stSidebarCollapsedControl"] svg,[data-testid="stSidebarCollapseButton"] svg{
